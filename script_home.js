@@ -1,10 +1,10 @@
-// Active button Color change:
+// Active button Color change
 
-const filterButtons = document.querySelectorAll(".button");
+const filterButton = document.querySelectorAll(".button");
 
-filterButtons.forEach((button) => {
+filterButton.forEach((button) => {
   button.addEventListener("click", function () {
-    filterButtons.forEach((btn) => {
+    filterButton.forEach((btn) => {
       btn.classList.remove("btn-primary");
     });
 
@@ -12,7 +12,7 @@ filterButtons.forEach((button) => {
   });
 });
 
-// Count Issues:
+// Count Issues
 
 function countIssues(issues) {
   const total = issues.length;
@@ -78,7 +78,7 @@ function displayIssues(issues) {
 
     const card = document.createElement("div");
 
-    card.className = `card bg-white shadow border-t-4 ${borderColor}`;
+    card.className = `card bg-white mb-5 shadow border-t-4 ${borderColor}`;
 
     card.innerHTML = `
 
@@ -86,9 +86,9 @@ function displayIssues(issues) {
 
 <div class="flex justify-between items-center">
                 <span
-                    class="badge badge-outline text-[green] font-medium text-[10px]">${issue.status}</span>
+                    class="badge badge-outline text-[green] font-medium text-[15px]">${issue.status}</span>
                 <span
-                    class="badge badge-outline text-[#EF4444] font-medium text-[10px]">${issue.priority}</span>
+                    class="badge badge-outline text-[#EF4444] font-medium text-[7px]">${issue.priority}</span>
             </div>
 
             <h2 class="card-title cursor-pointer font-semibold text-[14px]"
@@ -109,51 +109,6 @@ function displayIssues(issues) {
 
     container.appendChild(card);
   });
-}
-
-// Modal Details
-
-async function showDetails(id) {
-  spinner.classList.remove("hidden");
-  const res = await fetch(
-    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
-  );
-
-  const data = await res.json();
-
-  const issue = data.data;
-  console.log(issue);
-
-  const detailsModal = document.getElementById("details-modal");
-  detailsModal.innerHTML = `
-<h2 id="modalTitle" class="font-bold text-[24px]">${issue.title}</h2>
-
-            <div class="flex items-center gap-2">
-                <span id="modalStatus"
-                    class="badge badge-outline text-white text-[green] font-medium text-[10px]">${issue.status}</span>
-
-                <p class="text-[#64748B] text-[12px]">.&nbsp Opened by &nbsp<span id="modalAuthor">${issue.author}</span>
-                </p>
-                <p class="text-[#64748B] text-[12px]">.&nbsp<span id="modalCreatedAt">${issue.createdAt}</span></p>
-            </div>
-
-            <div id="modalLabels" class="flex items-center gap-2 py-3 badge font-medium text-[10px]">
-
-                <div class="flex items-center gap-1">${createElements(issue.labels)}</div>
-            </div>
-
-            <p id="modalDescription" class="text-[#64748B]">${issue.description}</p>
-            <div class="flex items-center gap-[150px] bg-gray-100 p-2 rounded-xl">
-                <p>Assignee:<br><span id="modalAssignee" class="font-semibold">${issue.assignee ? issue.assignee : "Unassigned"}</span></p>
-
-                <p>Priority:<br><span class="badge badge-soft badge-warning  font-medium text-[10px]"
-                        id="modalPriority">${issue.priority}</span></p>
-            </div>
-
-`;
-
-  document.getElementById("issueModal").showModal();
-  spinner.classList.add("hidden");
 }
 
 // Search
