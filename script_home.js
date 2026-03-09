@@ -62,7 +62,7 @@ loadIssues("all");
 const createElements = (arr) => {
   const htmlElements = arr.map(
     (el) =>
-      `<span class="badge badge-outline font-medium text-[10px] bg-[#D97706]">${el}</span>`,
+      `<span class="badge badge-outline font-medium text-[10px] bg-[#EF4444]">${el}</span>`,
   );
   return htmlElements.join(" ");
 };
@@ -82,7 +82,7 @@ function displayIssues(issues) {
 
     card.innerHTML = `
 
-<div class="card-body">
+<div class="card-body mt-5">
 
 <div class="flex justify-between items-center">
                 <span
@@ -146,7 +146,7 @@ async function showDetails(id) {
             <div class="flex items-center gap-[150px] bg-gray-100 p-2 rounded-xl">
                 <p>Assignee:<br><span id="modalAssignee" class="font-semibold">${issue.assignee ? issue.assignee : "Unassigned"}</span></p>
 
-                <p>Priority:<br><span class="badge badge-outline text-[#EF4444] font-medium text-[10px]"
+                <p>Priority:<br><span class="badge badge-soft badge-warning  font-medium text-[10px]"
                         id="modalPriority">${issue.priority}</span></p>
             </div>
 
